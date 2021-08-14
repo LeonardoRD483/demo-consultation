@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+table {
+  @include mat-elevation(0)
+}
+.full-width-table {
+  width: 80%;
+  margin: auto;
+  @include mat-elevation(0)
+}
+mat-paginator{
+  width: 80%;
+  margin: auto;
+  @include mat-elevation(0)
+}
