@@ -14,6 +14,16 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { ListPostsDoctorComponent } from './components/list-posts-doctor/list-posts-doctor.component';
 import { ListPostsPatientComponent } from './components/list-posts-patient/list-posts-patient.component';
 import { ListPostsSpecialtyComponent } from './components/list-posts-specialty/list-posts-specialty.component';
+import { AddHospitalComponent } from './components/add-hospital/add-hospital.component';
+import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
+import { AddPatientComponent } from './components/add-patient/add-patient.component';
+import { AddSpecialtyComponent } from './components/add-specialty/add-specialty.component';
+import { AddGradeComponent } from './components/add-grade/add-grade.component';
+import { UpdateHospitalComponent } from './components/update-hospital/update-hospital.component';
+import { UpdateDoctorComponent } from './components/update-doctor/update-doctor.component';
+import { UpdateGradeComponent } from './components/update-grade/update-grade.component';
+import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
+import { UpdateSpecialtyComponent } from './components/update-specialty/update-specialty.component';
 
 
 
@@ -22,7 +32,17 @@ import { ListPostsSpecialtyComponent } from './components/list-posts-specialty/l
     ListPostsComponent,
     ListPostsDoctorComponent,
     ListPostsPatientComponent,
-    ListPostsSpecialtyComponent
+    ListPostsSpecialtyComponent,
+    AddHospitalComponent,
+    AddDoctorComponent,
+    AddPatientComponent,
+    AddSpecialtyComponent,
+    AddGradeComponent,
+    UpdateHospitalComponent,
+    UpdateDoctorComponent,
+    UpdateGradeComponent,
+    UpdatePatientComponent,
+    UpdateSpecialtyComponent
   ],
   imports: [
     CommonModule,
