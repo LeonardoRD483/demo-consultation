@@ -15,7 +15,7 @@ import { PatientService } from '../../services/patient/patient.service';
 export class UpdatePatientComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<UpdatePatientComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private cl_service: DoctorService,
-        private pt_service : PatientService) { }
+    private pt_service: PatientService) { }
 
   ngOnInit(): void {
     console.log(this.data.data)
@@ -63,7 +63,7 @@ export class UpdatePatientComponent implements OnInit {
 
 
   saveClient() {
-    this.fb_doctor.get('name')!.value
+    /*this.fb_doctor.get('name')!.value
     let errorName = this.fb_doctor.controls['name'].valid;
     let errorLast_name = this.fb_doctor.controls['last_name'].valid;
     console.log(errorName);
@@ -78,37 +78,23 @@ export class UpdatePatientComponent implements OnInit {
       this.cl_service.insert_Client(obj).subscribe(
         (res: any) => {
           console.log(res.data.id);
-          this.saveDoctor(res.data.id)
         }, (err: any) => {
           console.log(err);
         }
       )
       console.log(this.fb_doctor.get('name')!.value)
-    }
+    }*/
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!'
+    })
+    this.dialogRef.close();
 
   }
 
 
-  saveDoctor(id: number) {
-    let obj: Doctor = {
-      "client": id
-    }
-    this.cl_service.insert(obj).subscribe(
-      (res: any) => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Your work has been saved',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.dialogRef.close();
 
-      }, (err: any) => {
-        console.log(err);
-
-      }
-    )
-  }
 
 }

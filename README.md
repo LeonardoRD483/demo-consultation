@@ -1,27 +1,30 @@
-# DemoNg
+# Frontend Hospital Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+##### This Project is made with Angular and Material UI
+### Verification in a Console 
 
-## Development server
+> node -v
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##### Output for example :
 
-## Code scaffolding
+**v14.16.0**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Angular Check
 
-## Build
+> ng - - version
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+##### Output for example :
 
-## Running unit tests
+**Angular CLI: 12.0.0**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### After checking if you have the correct tools Clone the Repository
 
-## Running end-to-end tests
+> git clone https://github.com/LeonardoRD483/demo-consultation.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+#####  Already having the repository on your local machine in the console write: :
+> npm install
 
-## Further help
+### To Finish Run the project
+#END
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+

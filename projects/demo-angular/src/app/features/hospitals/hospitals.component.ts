@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddHospitalComponent } from '../../shared/components/add-hospital/add-hospital.component';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'demo-hospitals',
   templateUrl: './hospitals.component.html',
-  styleUrls: ['./hospitals.component.scss']
+  styleUrls: ['./hospitals.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HospitalsComponent implements OnInit {
 

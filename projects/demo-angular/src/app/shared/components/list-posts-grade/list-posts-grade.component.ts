@@ -27,9 +27,9 @@ export class ListPostsGradeComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  state: Boolean = true;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = ['position', 'name','user', 'Actions'];
+  displayedColumns: string[] = ['position', 'name', 'user', 'Actions'];
   dataSource: any;
 
   constructor(private dt_service: GradeService, public dialog: MatDialog) { }
@@ -44,7 +44,7 @@ export class ListPostsGradeComponent implements OnInit {
       (res: any) => {
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.paginator = this.paginator;
-
+        this.state = false;
         console.log(this.dataSource);
 
       }, (error: any) => {
@@ -66,16 +66,22 @@ export class ListPostsGradeComponent implements OnInit {
   }
 
   updateDialog(id: number) {
-    const dialogRef = this.dialog.open(UpdateSpecialtyComponent, {
-      width: '675px',
-      height: '316px',
-      panelClass: 'custom-dialog-container',
-      data: { data: id }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.List()
-    });
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!'
+    })
+    /* const dialogRef = this.dialog.open(UpdateSpecialtyComponent, {
+       width: '675px',
+       height: '316px',
+       panelClass: 'custom-dialog-container',
+       data: { data: id }
+     });
+ 
+     dialogRef.afterClosed().subscribe(result => {
+       this.List()
+     });*/
 
   }
 

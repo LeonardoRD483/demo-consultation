@@ -1,4 +1,16 @@
 
+.spacer {
+    flex: 1 auto;
+}
 .header-toolbar {
     background-color: #ffffff;
+}
+
+.custom-dialog-container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+mat-dialog-container {
+    padding: 0px !important;
 }

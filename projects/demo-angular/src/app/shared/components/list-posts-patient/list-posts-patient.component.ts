@@ -23,7 +23,7 @@ export class ListPostsPatientComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  state: Boolean = true;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns: string[] = ['position', 'name', 'weight', 'Actions'];
   dataSource: any;
@@ -42,7 +42,7 @@ export class ListPostsPatientComponent implements AfterViewInit, OnInit {
       (res: any) => {
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.paginator = this.paginator;
-
+        this.state = false;
         console.log(this.dataSource);
 
       }, (error: any) => {
@@ -84,21 +84,21 @@ export class ListPostsPatientComponent implements AfterViewInit, OnInit {
 
 
   delete(id: Doctor) {
-     this.dt_service.delete(id).subscribe(
-        (res: any) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.List()
-        }, (err: any) => {
-          console.log(err);
-  
-        }
-      )
+    this.dt_service.delete(id).subscribe(
+      (res: any) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.List()
+      }, (err: any) => {
+        console.log(err);
+
+      }
+    )
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

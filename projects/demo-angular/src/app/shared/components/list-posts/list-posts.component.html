@@ -9,6 +9,7 @@
   </mat-toolbar>
   
 </p>
+<mat-progress-bar *ngIf="state == true" mode="query" color="warn"></mat-progress-bar>
 
 
 <mat-form-field appearance="standard">
@@ -32,8 +33,8 @@
 
   <!-- Weight Column -->
   <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Last Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+    <th mat-header-cell *matHeaderCellDef> Direction </th>
+    <td mat-cell *matCellDef="let element"> {{element.direction}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
@@ -44,11 +45,11 @@
         <mat-icon aria-label="label">more_horiz</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click) = "updateDialog(element.doctor_id)">
+        <button mat-menu-item (click) = "updateDialog(element.id)">
           <mat-icon class="icon-color" aria-label="edit-icon">edit</mat-icon>
           <mat-label>Editar</mat-label>
         </button>
-        <button mat-menu-item (click) = "delete(element.doctor_id)">
+        <button mat-menu-item (click) = "delete(element.id)">
           <mat-icon aria-label="delete-icon" color="warn">delete_outline</mat-icon>
           <mat-label>Eliminar</mat-label>
         </button>

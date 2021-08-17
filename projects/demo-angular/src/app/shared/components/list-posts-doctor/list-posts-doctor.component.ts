@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ListPostsDoctorDataSource, ListPostsDoctorItem } from './list-posts-doctor-datasource';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from '../../../../environments/environment';
 import { DoctorService } from '../../services/doctor/doctor.service';
@@ -23,7 +22,7 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  state: Boolean = true;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns: string[] = ['position', 'name', 'weight', 'Actions'];
   dataSource: any;
@@ -40,6 +39,7 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
   List() {
     this.dt_service.getAll().subscribe(
       (res: any) => {
+        this.state = false
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.paginator = this.paginator;
 

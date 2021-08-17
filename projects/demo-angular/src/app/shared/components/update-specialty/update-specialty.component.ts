@@ -61,7 +61,7 @@ export class UpdateSpecialtyComponent implements OnInit {
 
 
   saveClient() {
-    this.fb_doctor.get('name')!.value
+    /*this.fb_doctor.get('name')!.value
     let errorName = this.fb_doctor.controls['name'].valid;
     console.log(errorName);
     if (errorName == true) {
@@ -85,12 +85,18 @@ export class UpdateSpecialtyComponent implements OnInit {
         }
       )
       console.log(this.fb_doctor.get('name')!.value)
-    }
+    }*/
+
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!'
+    })
+    this.dialogRef.close();
 
   }
 
-  savePrueba() {
-    console.log(this.fb_doctor.get('name')!.value)
-  }
+
 
 }

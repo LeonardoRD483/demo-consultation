@@ -10,6 +10,9 @@ import { AddDoctorComponent } from '../add-doctor/add-doctor.component';
 import { UpdateDoctorComponent } from '../update-doctor/update-doctor.component';
 import { Doctor } from '../../models/doctor';
 import Swal from 'sweetalert2'
+import { Hospital } from '../../models/Hospital';
+import { HospitalService } from '../../services/hospital/hospital.service';
+import { AddHospitalComponent } from '../add-hospital/add-hospital.component';
 
 
 @Component({
@@ -21,12 +24,12 @@ export class ListPostsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
+  state: Boolean = true;
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns: string[] = ['position', 'name', 'weight', 'Actions'];
   dataSource: any;
 
-  constructor(private dt_service: DoctorService, public dialog: MatDialog) { }
+  constructor(private dt_service: HospitalService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log(environment.baseUrl + "doctor");
@@ -38,11 +41,9 @@ export class ListPostsComponent implements OnInit {
   List() {
     this.dt_service.getAll().subscribe(
       (res: any) => {
+        this.state = false
         this.dataSource = new MatTableDataSource(res.data);
         this.dataSource.paginator = this.paginator;
-
-        console.log(this.dataSource);
-
       }, (error: any) => {
         console.log(error);
 
@@ -50,7 +51,7 @@ export class ListPostsComponent implements OnInit {
     )
   }
   openDialog() {
-    const dialogRef = this.dialog.open(AddDoctorComponent, {
+    const dialogRef = this.dialog.open(AddHospitalComponent, {
       width: '675px',
       height: '416px',
       panelClass: 'custom-dialog-container'
@@ -62,16 +63,21 @@ export class ListPostsComponent implements OnInit {
   }
 
   updateDialog(id: number) {
-    const dialogRef = this.dialog.open(UpdateDoctorComponent, {
-      width: '675px',
-      height: '416px',
-      panelClass: 'custom-dialog-container',
-      data: { data: id }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.List()
-    });
+    /* const dialogRef = this.dialog.open(UpdateDoctorComponent, {
+       width: '675px',
+       height: '416px',
+       panelClass: 'custom-dialog-container',
+       data: { data: id }
+     });
+ 
+     dialogRef.afterClosed().subscribe(result => {
+       this.List()
+     });*/
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!'
+    })
 
   }
 
@@ -81,7 +87,7 @@ export class ListPostsComponent implements OnInit {
   }
 
 
-  delete(id: Doctor) {
+  delete(id: number) {
     this.dt_service.delete(id).subscribe(
       (res: any) => {
         Swal.fire({
