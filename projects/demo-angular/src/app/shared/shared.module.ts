@@ -24,6 +24,8 @@ import { UpdateDoctorComponent } from './components/update-doctor/update-doctor.
 import { UpdateGradeComponent } from './components/update-grade/update-grade.component';
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
 import { UpdateSpecialtyComponent } from './components/update-specialty/update-specialty.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ListPostsGradeComponent } from './components/list-posts-grade/list-posts-grade.component';
 
 
 
@@ -42,9 +44,11 @@ import { UpdateSpecialtyComponent } from './components/update-specialty/update-s
     UpdateDoctorComponent,
     UpdateGradeComponent,
     UpdatePatientComponent,
-    UpdateSpecialtyComponent
+    UpdateSpecialtyComponent,
+    ListPostsGradeComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     RouterModule,
     MatTableModule,
@@ -61,7 +65,8 @@ import { UpdateSpecialtyComponent } from './components/update-specialty/update-s
     ListPostsComponent,
     ListPostsDoctorComponent,
     ListPostsPatientComponent,
-    ListPostsSpecialtyComponent
+    ListPostsSpecialtyComponent,
+    ListPostsGradeComponent
   ]
 })
 export class SharedModule { }

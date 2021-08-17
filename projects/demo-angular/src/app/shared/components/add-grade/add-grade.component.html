@@ -1,1 +1,49 @@
-<p>add-grade works!</p>
+<mat-toolbar style="background-color: #3A4651;">
+    <span style="color: white;">Grade Registration</span>
+    <span class="example-spacer"></span>
+    <button style="color: rgba( 68, 243, 126 , 0.75);" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon" (click)="onClose()">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form (ngSubmit)="onValidation()" name="fb_doctor" [formGroup]="fb_doctor">
+
+
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Patient</mat-label>
+            <select matNativeControl formControlName="patient">
+                <option value="" selected></option>
+                <option *ngFor="let car of cars" [value]="car.patient_id">
+                    {{car.name}}
+                </option>
+            </select>
+            <mat-error *ngIf="!fb_doctor.controls['patient'].valid">
+                Enter a valid parameter
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div style="display: flex; width: 500px;">
+        <div  style="width: 500px;">
+            <mat-form-field class="full-width-direction" appearance="outline" class = "mat-form-field">
+                <mat-label>Description</mat-label>
+                <input class="input-email" formControlName="name" matInput placeholder="Enter Description " required />
+                <mat-error *ngIf="!fb_doctor.controls['name'].valid">
+                    Enter a valid parameter
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+
+    <mat-toolbar>
+        <button (click)="cancel()" mat-stroked-button
+            style="color: grey; border-color: rgba( 68, 243, 126 , 0.75);">CANCELAR</button>
+        <span class="example-spacer"></span>
+        <button (click)="saveClient()" mat-button mat-stroked-button
+            style="color: white; width: 110px; background-color: rgba( 68, 243, 126 , 0.75);">SAVE</button>
+    </mat-toolbar>
+</form>

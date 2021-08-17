@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ListPostsDoctorDataSource, ListPostsDoctorItem } from './list-posts-doctor-datasource';
 import { MatTableDataSource } from '@angular/material/table';
 import { environment } from '../../../../environments/environment';
 import { DoctorService } from '../../services/doctor/doctor.service';
@@ -11,30 +10,33 @@ import { AddDoctorComponent } from '../add-doctor/add-doctor.component';
 import { UpdateDoctorComponent } from '../update-doctor/update-doctor.component';
 import { Doctor } from '../../models/doctor';
 import Swal from 'sweetalert2'
-
-
+import { AddSpecialtyComponent } from '../add-specialty/add-specialty.component';
+import { SpecialtyService } from '../../services/specialty/specialty.service';
+import { Specialty } from '../../models/Specialty';
+import { UpdateSpecialtyComponent } from '../update-specialty/update-specialty.component';
+import { GradeService } from '../../services/grade/grade.service';
+import { AddGradeComponent } from '../add-grade/add-grade.component';
 
 @Component({
-  selector: 'demo-list-posts-doctor',
-  templateUrl: './list-posts-doctor.component.html',
-  styleUrls: ['./list-posts-doctor.component.scss']
+  selector: 'demo-list-posts-grade',
+  templateUrl: './list-posts-grade.component.html',
+  styleUrls: ['./list-posts-grade.component.scss']
 })
-export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
+export class ListPostsGradeComponent implements OnInit {
+
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns: string[] = ['position', 'name', 'weight', 'Actions'];
+  displayedColumns: string[] = ['position', 'name','user', 'Actions'];
   dataSource: any;
 
-  constructor(private dt_service: DoctorService, public dialog: MatDialog) { }
+  constructor(private dt_service: GradeService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log(environment.baseUrl + "doctor");
     this.List();
-
-
   }
 
   List() {
@@ -52,9 +54,9 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
     )
   }
   openDialog() {
-    const dialogRef = this.dialog.open(AddDoctorComponent, {
+    const dialogRef = this.dialog.open(AddGradeComponent, {
       width: '675px',
-      height: '416px',
+      height: '316px',
       panelClass: 'custom-dialog-container'
     });
 
@@ -64,9 +66,9 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
   }
 
   updateDialog(id: number) {
-    const dialogRef = this.dialog.open(UpdateDoctorComponent, {
+    const dialogRef = this.dialog.open(UpdateSpecialtyComponent, {
       width: '675px',
-      height: '416px',
+      height: '316px',
       panelClass: 'custom-dialog-container',
       data: { data: id }
     });
@@ -83,9 +85,13 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
   }
 
 
-  delete(id: Doctor) {
+  delete(id: number) {
+    console.log();
+
     this.dt_service.delete(id).subscribe(
       (res: any) => {
+        console.log(res);
+
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -104,7 +110,6 @@ export class ListPostsDoctorComponent implements OnInit, AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 
 
 }

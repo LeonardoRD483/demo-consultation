@@ -1,1 +1,65 @@
-<p>update-patient works!</p>
+<mat-toolbar style="background-color: #3A4651;">
+    <span style="color: white;">Patient Registration</span>
+    <span class="example-spacer"></span>
+    <button style="color: rgba( 68, 243, 126 , 0.75);" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon" (click)="onClose()">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form (ngSubmit)="onValidation()" name="fb_doctor" [formGroup]="fb_doctor">
+
+    <div style="display: flex; ">
+        <div class="emailInput">
+            <mat-form-field class="full-width-name" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input class="input-name" formControlName="name" matInput placeholder="Enter Name" required />
+
+                <mat-error *ngIf="!fb_doctor.controls['name'].valid">
+                    Enter a valid parameter
+                </mat-error>
+
+            </mat-form-field>
+        </div>
+
+
+
+    </div>
+    <div class="emailInput">
+        <mat-form-field class="full-width-last_name" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input class="input-last_name" formControlName="last_name" matInput placeholder="Enter Last_name "
+                required />
+
+            <mat-error *ngIf="!fb_doctor.controls['last_name'].valid">
+                Enter a valid parameter
+            </mat-error>
+
+        </mat-form-field>
+    </div>
+
+    <div style="display: flex; width: 500px;">
+
+        <div class="emailInput" style="width: 500px;">
+            <mat-form-field class="full-width-direction" appearance="outline" style="width: 100%;">
+                <mat-label>Direction</mat-label>
+
+                <input class="input-email" formControlName="direction" matInput placeholder="Enter email address"
+                    required />
+
+                <mat-error *ngIf="!fb_doctor.controls['direction'].valid">
+                    Enter a valid parameter
+                </mat-error>
+
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-toolbar>
+        <button (click)="cancel()" mat-stroked-button style="color: grey; border-color: rgba( 68, 243, 126 , 0.75);">CANCELAR</button>
+        <span class="example-spacer"></span>
+        <button (click)="saveClient()" mat-button  mat-stroked-button
+            style="color: white; width: 110px; background-color: rgba( 68, 243, 126 , 0.75);">SAVE</button>
+    </mat-toolbar>
+</form>
+

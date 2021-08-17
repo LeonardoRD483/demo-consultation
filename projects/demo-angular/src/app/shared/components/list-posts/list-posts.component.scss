@@ -1,5 +1,8 @@
 @import "~@angular/material/theming";
 table {
+  margin: auto;
+
+  width: 80%;
   @include mat-elevation(0)
 }
 .full-width-table {
@@ -11,4 +14,15 @@ mat-paginator{
   width: 80%;
   margin: auto;
   @include mat-elevation(0)
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 80%;
+  margin-left: 9%;
+}
+
+.spacer {
+  flex: 1 auto;
 }

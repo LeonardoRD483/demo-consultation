@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HospitalsModule } from './features/hospitals/hospitals.module';
 import { DoctorModule } from './features/doctor/doctor.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DoctorModule } from './features/doctor/doctor.module';
     CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule
   
   ],
   providers: [],

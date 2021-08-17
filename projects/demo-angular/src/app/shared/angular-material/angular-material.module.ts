@@ -33,7 +33,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [],
   imports: [
@@ -68,7 +68,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatAutocompleteModule,
     MatPaginatorModule,
     DragDropModule,
-  
+    FormsModule,
+    ReactiveFormsModule,
     MatChipsModule,
   ],
   exports: [
@@ -103,6 +104,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     DragDropModule,
     MatChipsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AngularMaterialModule { }

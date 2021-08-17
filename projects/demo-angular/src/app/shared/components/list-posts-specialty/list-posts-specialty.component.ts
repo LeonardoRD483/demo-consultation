@@ -1,24 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
+import { environment } from '../../../../environments/environment';
+import { DoctorService } from '../../services/doctor/doctor.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AddDoctorComponent } from '../add-doctor/add-doctor.component';
+import { UpdateDoctorComponent } from '../update-doctor/update-doctor.component';
+import { Doctor } from '../../models/doctor';
+import Swal from 'sweetalert2'
+import { AddSpecialtyComponent } from '../add-specialty/add-specialty.component';
+import { SpecialtyService } from '../../services/specialty/specialty.service';
+import { Specialty } from '../../models/Specialty';
+import { UpdateSpecialtyComponent } from '../update-specialty/update-specialty.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+
+
 @Component({
   selector: 'demo-list-posts-specialty',
   templateUrl: './list-posts-specialty.component.html',
@@ -27,18 +25,95 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class ListPostsSpecialtyComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() { }
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns: string[] = ['position', 'name', 'Actions'];
+  dataSource: any;
+
+  constructor(private dt_service: SpecialtyService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log(environment.baseUrl + "doctor");
+    this.List();
+
+
   }
 
+  List() {
+    this.dt_service.getAll().subscribe(
+      (res: any) => {
+        this.dataSource = new MatTableDataSource(res.data);
+        this.dataSource.paginator = this.paginator;
+
+        console.log(this.dataSource);
+
+      }, (error: any) => {
+        console.log(error);
+
+      }
+    )
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(AddSpecialtyComponent, {
+      width: '675px',
+      height: '316px',
+      panelClass: 'custom-dialog-container'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.List()
+    });
+  }
+
+  updateDialog(id: number) {
+    const dialogRef = this.dialog.open(UpdateSpecialtyComponent, {
+      width: '675px',
+      height: '316px',
+      panelClass: 'custom-dialog-container',
+      data: { data: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.List()
+    });
+
+  }
+
+
+  ngAfterViewInit(): void {
+
+  }
+
+
+  delete(id: number) {
+    console.log();
+    
+    this.dt_service.delete(id).subscribe(
+      (res: any) => {
+        console.log(res);
+        
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.List()
+      }, (err: any) => {
+        console.log(err);
+
+      }
+    )
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
 
 
 
